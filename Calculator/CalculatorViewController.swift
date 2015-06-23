@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController
+class CalculatorViewController: UIViewController
 {
     
     @IBOutlet weak var display: UILabel!
@@ -24,40 +24,33 @@ class ViewController: UIViewController
         set{
             if let value = newValue{
                 display.text = "\(value)"
-                
+                opHistoryValue = "\(brain.description) ="
             } else {
-                display.text = " "
+                display.text = "0.0"
+                opHistoryValue = " "
             }
             usrTypingNum = false;
+            
         }
     }
-    
-    @IBOutlet weak var opDisplay: UILabel!
-    
-    var opDisplayValue: String?{
+ 
+    @IBOutlet weak var opHistory: UILabel!
+
+    var opHistoryValue: String?{
         get{
-            if let opDisplayValue = opDisplay.text{
-                return opDisplayValue
+            if let opHistoryValue = opHistory.text{
+                return opHistoryValue
             } else{
                 return nil
             }
         }
         set{
             if let value = newValue{
-                opDisplay.text = value
+                opHistory.text = value
             } else {
-                opDisplay.text = " "
+                opHistory.text = " "
             }
         }
-    }
-    
-    func UpdateDisplayValues(operation: Bool = false){
-        displayValue = brain.updateDisplay()
-        var suffix = ""
-        if operation {
-            suffix = " ="
-        }
-        opDisplayValue = brain.description + suffix
     }
     
     var brain = CalculatorBrain()
@@ -73,8 +66,7 @@ class ViewController: UIViewController
                 enter()
             }
             if let operation = sender.currentTitle {
-                brain.performOperation(operation)
-                UpdateDisplayValues(operation: true)
+                displayValue = brain.performOperation(operation)
             }
         }
     }
@@ -94,15 +86,13 @@ class ViewController: UIViewController
     @IBAction func enter() {
         usrTypingNum = false
         if let displayNumberValue = displayValue {
-            brain.pushOperand(displayValue!)
-            UpdateDisplayValues()
+            displayValue = brain.pushOperand(displayValue!)
         }
     }
     @IBAction func clear() {
         brain.clearOpStack()
         brain.clearVariableValues()
-        UpdateDisplayValues()
-        displayValue = 0
+        displayValue = nil
     }
     
     @IBAction func undo() {
@@ -112,22 +102,21 @@ class ViewController: UIViewController
             displayValue = 0
             usrTypingNum = false
         } else{
-            UpdateDisplayValues(operation: brain.undoLastOp())
+            brain.undoLastOp()
+            displayValue = brain.updateDisplay()
         }
     }
     
     @IBAction func pushVar(sender: UIButton) {
         usrTypingNum = false
-        let varName = "M"
-        brain.pushOperand(varName)
-        UpdateDisplayValues()
+        displayValue = brain.pushOperand(sender.currentTitle!)
     }
+    
     @IBAction func setVar(sender: UIButton) {
         usrTypingNum = false
-        let varName = "M"
         if let displayNumberValue = displayValue {
-            brain.variableValues["\(varName)"] = displayNumberValue
+            brain.variableValues[String(sender.currentTitle![advance(sender.currentTitle!.startIndex, 1)])] = displayNumberValue
         }
-        UpdateDisplayValues()
+        displayValue = brain.updateDisplay()
     }
 }

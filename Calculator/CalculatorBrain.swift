@@ -99,7 +99,7 @@ class CalculatorBrain
     
     private func evaluate() -> Double? {
         let (result, remainder) = evaluate(opStack)
-        println("\(opStack) = \(result) with \(remainder) left over")
+    //    println("\(opStack) = \(result) with \(remainder) left over")
         return result
     }
     
@@ -120,15 +120,15 @@ class CalculatorBrain
             case .BinaryOperation(let symbol, let operation, let precedence):
                 let op1Description = describeStack(remainingOps)
                 if let operand1 = op1Description.result{
+                    var op1ReturnValue = operand1
+                    var op2ReturnValue: String
                     let op2Description = describeStack(op1Description.remainingOps)
-                    var op2ReturnValue = ""
                     if let operand2 = op2Description.result{
                         op2ReturnValue = operand2
                     } else {
                         op2ReturnValue = "?"
                     }
-                    var op1ReturnValue = operand1
-                    if 	 precedence > op2Description.precedence {
+                    if precedence > op2Description.precedence {
                         op2ReturnValue = "(\(op2ReturnValue))"
                     }
                     else if precedence > op1Description.precedence {
@@ -148,7 +148,7 @@ class CalculatorBrain
         if let statement = result {
             description = statement
         }
-        while !remainder.isEmpty {
+        while remainder.count > 0 {
             (result, remainder, _) = describeStack(remainder)
             if let statement = result {
                 description.splice("\(statement), ", atIndex: description.startIndex)
