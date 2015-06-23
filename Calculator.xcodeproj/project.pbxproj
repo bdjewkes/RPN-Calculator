@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A32CD3BB1B39FB580038340E /* AxesDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CD3BA1B39FB580038340E /* AxesDrawer.swift */; };
+		A32CD3BD1B39FF560038340E /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CD3BC1B39FF560038340E /* GraphViewController.swift */; };
+		A32CD3BF1B3A15860038340E /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CD3BE1B3A15860038340E /* GraphView.swift */; };
 		A330EAFA1B2CC3A30026F906 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A330EAF91B2CC3A30026F906 /* Main.storyboard */; };
 		A3DE97891B28BCD300678695 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DE97881B28BCD300678695 /* AppDelegate.swift */; };
 		A3DE97901B28BCD300678695 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3DE978F1B28BCD300678695 /* Images.xcassets */; };
@@ -27,6 +30,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A32CD3BA1B39FB580038340E /* AxesDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AxesDrawer.swift; path = ../../../Downloads/AxesDrawer.swift; sourceTree = "<group>"; };
+		A32CD3BC1B39FF560038340E /* GraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
+		A32CD3BE1B3A15860038340E /* GraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		A330EAF91B2CC3A30026F906 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A3DE97831B28BCD300678695 /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3DE97871B28BCD300678695 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -82,6 +88,9 @@
 				A3DE97A81B28BD0400678695 /* CalculatorBrain.swift */,
 				A3DE97AC1B28BD4D00678695 /* CalculatorViewController.swift */,
 				A330EAF91B2CC3A30026F906 /* Main.storyboard */,
+				A32CD3BC1B39FF560038340E /* GraphViewController.swift */,
+				A32CD3BE1B3A15860038340E /* GraphView.swift */,
+				A32CD3BA1B39FB580038340E /* AxesDrawer.swift */,
 				A3DE97861B28BCD300678695 /* Supporting Files */,
 			);
 			path = Calculator;
@@ -216,8 +225,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3DE97A91B28BD0400678695 /* CalculatorBrain.swift in Sources */,
+				A32CD3BD1B39FF560038340E /* GraphViewController.swift in Sources */,
+				A32CD3BB1B39FB580038340E /* AxesDrawer.swift in Sources */,
 				A3DE97AD1B28BD4D00678695 /* CalculatorViewController.swift in Sources */,
 				A3DE97891B28BCD300678695 /* AppDelegate.swift in Sources */,
+				A32CD3BF1B3A15860038340E /* GraphView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +351,7 @@
 				INFOPLIST_FILE = Calculator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -349,6 +362,7 @@
 				INFOPLIST_FILE = Calculator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
