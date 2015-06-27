@@ -39,11 +39,18 @@ class CalculatorBrain
     
     var description: String {
         get{
-            if let describe = describeStack() {
-                return describe
-            } else {
-                return " "
+            var description = " "
+            var (result, remainder) = describeStack()
+            if let statement = result {
+                description = statement
             }
+            while remainder.count > 0 {
+                (result, remainder, _) = describeStack(remainder)
+                if let statement = result {
+                    description.splice("\(statement), ", atIndex: description.startIndex)
+                }
+            }
+            return description
         }
     }
     
@@ -62,6 +69,32 @@ class CalculatorBrain
         learnOp(Op.UnaryOperation("cos", cos))
         learnOp(Op.UnaryOperation("±") {$0 * -1})
         learnOp(Op.Constant("π") {$0 * M_PI})
+    }
+    
+    typealias PropertyList = AnyObject
+    var program: PropertyList {// guaranteed to be a PropertyList
+        get{
+            return opStack.map { $0.description }
+        }
+        set {
+            if let opSymbols = newValue as? Array<String> {
+                var newOpStack = [Op]()
+                for opSymbol in opSymbols {
+                    if let op = knownOps[opSymbol]{
+                        newOpStack.append(op)
+                    }
+                    else if let operand = NSNumberFormatter().numberFromString(opSymbol)?.doubleValue{
+                        newOpStack.append(.Operand(operand))
+                    } else {
+                        newOpStack.append(.Variable(opSymbol))
+                    }
+                    
+                }
+                opStack = newOpStack
+            }
+            
+        }
+        
     }
     
     private func evaluate(ops: [Op]) -> (result: Double?, remainingOps: [Op]){
@@ -142,22 +175,11 @@ class CalculatorBrain
         }
         return (nil, ops, Int.max)
     }
-    private func describeStack() -> String? {
-        var description = " "
+    private func describeStack() -> (String?, [Op]){
         var (result, remainder, _) = describeStack(opStack)
-        if let statement = result {
-            description = statement
-        }
-        while remainder.count > 0 {
-            (result, remainder, _) = describeStack(remainder)
-            if let statement = result {
-                description.splice("\(statement), ", atIndex: description.startIndex)
-            }
-        }
-        return description
-        
-        
+        return (result, remainder)
     }
+    
     func pushOperand(operand: Double) -> Double? {
         opStack.append(Op.Operand(operand))
         return evaluate()

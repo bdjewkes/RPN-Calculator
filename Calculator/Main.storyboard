@@ -46,7 +46,7 @@
                                 </state>
                                 <connections>
                                     <action selector="operate:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="o4H-kB-JN2"/>
-                                    <segue destination="47F-PW-dRu" kind="showDetail" id="qZ4-qU-nH5"/>
+                                    <segue destination="vxn-tE-wwa" kind="showDetail" id="qZ4-qU-nH5"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zQr-gh-D4z">
@@ -476,17 +476,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tTe-xK-bKF" customClass="GraphView" customModule="Calculator" customModuleProvider="target">
+                            <view contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="tTe-xK-bKF" customClass="GraphView" customModule="Calculator" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="scale">
-                                        <real key="value" value="10"/>
+                                        <real key="value" value="100"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tTe-xK-bKF" firstAttribute="top" secondItem="pJ9-JT-6rP" secondAttribute="top" id="T4m-fU-5Wo"/>
+                            <constraint firstItem="tTe-xK-bKF" firstAttribute="bottom" secondItem="NBh-mj-vGu" secondAttribute="top" id="TP3-rb-w17"/>
+                            <constraint firstAttribute="trailing" secondItem="tTe-xK-bKF" secondAttribute="trailing" id="jvK-rw-gbg"/>
+                            <constraint firstItem="tTe-xK-bKF" firstAttribute="leading" secondItem="pJ9-JT-6rP" secondAttribute="leading" id="yxl-Z6-pq5"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Brz-c1-WEG"/>
                     <connections>
@@ -495,14 +501,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Cl-jL-aRz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1004" y="700"/>
+            <point key="canvasLocation" x="1816" y="700"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="GgF-4f-qCv">
             <objects>
                 <splitViewController id="XBn-cH-6OF" sceneMemberID="viewController">
                     <connections>
-                        <segue destination="47F-PW-dRu" kind="relationship" relationship="detailViewController" id="Soa-5S-orW"/>
+                        <segue destination="vxn-tE-wwa" kind="relationship" relationship="detailViewController" id="Soa-5S-orW"/>
                         <segue destination="cQa-wd-y20" kind="relationship" relationship="masterViewController" id="ht2-om-TpX"/>
                     </connections>
                 </splitViewController>
@@ -527,6 +533,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9uc-RF-MOU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="947" y="-133"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="INE-Yq-4fy">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vxn-tE-wwa" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="j47-Oj-lBu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="47F-PW-dRu" kind="relationship" relationship="rootViewController" id="Xpb-xK-WxY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XLe-P7-ijT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1004" y="700"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

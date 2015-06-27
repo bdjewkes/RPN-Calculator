@@ -53,7 +53,7 @@ class CalculatorViewController: UIViewController
         }
     }
     
-    var brain = CalculatorBrain()
+    private var brain = CalculatorBrain()
     
     var usrTypingNum = false
 
@@ -118,5 +118,17 @@ class CalculatorViewController: UIViewController
             brain.variableValues[String(sender.currentTitle![advance(sender.currentTitle!.startIndex, 1)])] = displayNumberValue
         }
         displayValue = brain.updateDisplay()
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var destination = segue.destinationViewController as? UIViewController
+        if let navCon = destination as? UINavigationController {
+            destination = navCon.visibleViewController
+        }
+        if let gvc = destination as? GraphViewController{
+            gvc.program = brain.program
+            gvc.independentVariable = "M"
+        }
     }
 }
