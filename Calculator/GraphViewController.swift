@@ -30,6 +30,7 @@ class GraphViewController: UIViewController, GraphViewDataSource {
                 }
                 println("The current brain description: \(brain.description)")
                 self.title = brain.description
+                
             }
             graphView.addGestureRecognizer(UIPinchGestureRecognizer(target: graphView, action: "scale:"))
             graphView.addGestureRecognizer(UIPanGestureRecognizer(target: graphView, action: "panOriginOffset:"))
